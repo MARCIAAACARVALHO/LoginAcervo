@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using LoginAcervo.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace LoginAcervo
 {
@@ -13,6 +15,10 @@ namespace LoginAcervo
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
             services.AddControllersWithViews();
         }
 
